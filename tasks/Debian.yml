@@ -1,0 +1,14 @@
+---
+
+- name: add the mesosphere key to host repository list
+  apt_key: url=http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0xE56151BF state=present
+
+- name: add the mesosphere repository to host
+  apt_repository: repo='deb http://repos.mesosphere.io/{{ansible_distribution | lower}} {{ansible_distribution_release}} main' state=present update_cache=yes
+
+- name: Install Mesos Package
+  apt: name={{item}} state=present
+  with_items:
+    - mesos
+    - marathon
+
