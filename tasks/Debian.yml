@@ -12,3 +12,5 @@
     - mesos
     - marathon
 
+- name: Reboot host
+  shell: reboot
