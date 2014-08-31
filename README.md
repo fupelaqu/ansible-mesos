@@ -3,4 +3,4 @@ ansible-mesos
 
 ## About
 
-Mesos playbook for ansible
+Ansible playbook for mesos
