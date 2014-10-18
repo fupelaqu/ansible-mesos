@@ -22,7 +22,7 @@ Checkout this project as a submodule under roles:
 $  cd roles
 $  git submodule add git://github.com/fupelaqu/ansible-mesos.git ./ansible-mesos
 $  git submodule update --init
-$  git commit ./submodule -m "Added submodule as ./subm"
+$  git commit ./ansible-mesos -m "Added submodule as ./ansible-mesos"
 ```
 
 ### Include this playbook as a role in your master playbook
