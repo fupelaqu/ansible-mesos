@@ -12,5 +12,16 @@
     - mesos
     - marathon
 
-- name: Reboot host
-  shell: reboot
+- name: Reboot instance
+  command: /sbin/shutdown -r now
+  register: reboot_result
+
+- name: Wait for instance to come online
+  sudo: false
+  local_action:
+    module: wait_for
+    host: "{{ ansible_ssh_host|default(inventory_hostname) }}"
+    port: "{{ ansible_ssh_port|default(22) }}"
+    delay: 10
+    timeout: 300
+    state: started
