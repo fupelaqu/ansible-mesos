@@ -1,5 +1,5 @@
 ---
-# Elasticsearch Ansible Playbook
+# mesos Ansible Playbook
 - hosts: all_mesos
   user: $user
   sudo: yes
