@@ -12,6 +12,12 @@
     - mesos
     - marathon
 
+- name: Change the order of the parameters to containerizers
+  shell: echo 'docker,mesos' > /etc/mesos-slave/containerizers
+
+- name: Increase the executor timeout
+  shell: echo '5mins' > /etc/mesos-slave/executor_registration_timeout
+
 - name: Reboot instance
   command: /sbin/shutdown -r now
   register: reboot_result
