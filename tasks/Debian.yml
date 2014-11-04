@@ -14,13 +14,16 @@
 
 - name: Change the order of the parameters to containerizers
   shell: echo 'docker,mesos' > /etc/mesos-slave/containerizers
+  register: containerizers
 
 - name: Increase the executor timeout
   shell: echo '5mins' > /etc/mesos-slave/executor_registration_timeout
+  register: executor_timeout
 
 - name: Reboot instance
   command: /sbin/shutdown -r now
   register: reboot_result
+  when: containerizers|changed or executor_timeout|changed
 
 - name: Wait for instance to come online
   sudo: false
@@ -31,3 +34,4 @@
     delay: 10
     timeout: 300
     state: started
+  when: reboot_result|changed
